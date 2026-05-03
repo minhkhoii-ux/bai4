@@ -1,17 +1,16 @@
 import org.junit.jupiter.api.Test;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.File;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FilePathTest {
 
     @Test
-    public void testFileExists_CrossPlatform() {
-        // REFACTOR: Sử dụng Path.of (Java 11+) hoặc Paths.get để tự động xử lý separator
-        Path filePath = Paths.get("src", "test", "resources", "config.txt");
+    public void testFileExists_HardcodedPath() {
+        // CỐ TÌNH LỖI: Cố định đường dẫn theo kiểu Windows
+        String filePath = "src\\test\\resources\\config.txt";
+        File file = new File(filePath);
 
-        // Sử dụng Files.exists của NIO thay vì File.exists
-        assertTrue(Files.exists(filePath), "File cấu hình phải tồn tại trên mọi OS!");
+        // Kiểm tra xem file có tồn tại không
+        assertTrue(file.exists(), "File cấu hình phải tồn tại!");
     }
 }
